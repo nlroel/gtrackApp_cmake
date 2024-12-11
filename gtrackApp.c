@@ -184,9 +184,7 @@ int main(int arg0, char** arg1)
     uint32_t benchmarkPerTrackMax = 0;
     uint32_t benchmarkPerTrackMin = 0xFFFFFFFF;
 
-    uint32_t cyclesPerSecond;
     uint32_t cyclesPerCCNT;
-    float    uSecondsPerCycle;
 
     memset((void *)&config, 0, sizeof(GTRACK_moduleConfig));
 #ifdef GTRACK_3D
@@ -245,8 +243,6 @@ int main(int arg0, char** arg1)
     printf("\tthresholds: [%d, %d, %d, %d, %d]\n", config.advParams->stateParams->det2actThre, config.advParams->stateParams->det2freeThre, config.advParams->stateParams->active2freeThre, config.advParams->stateParams->static2freeThre, config.advParams->stateParams->exit2freeThre);
 
     hTrackModule = gtrack_create(&config, &errCode);
-
-    uSecondsPerCycle = 1000000.f / cyclesPerSecond;
 
     gtrackStartTime = gtrack_getCycleCount();
     cyclesPerCCNT   = gtrack_getCycleCount() - gtrackStartTime;
@@ -399,17 +395,6 @@ int main(int arg0, char** arg1)
         printf("Tracking in 2D space\n");
 
     printf("Configured for %d maxPoints and %d maxTracks\n", config.maxNumPoints, config.maxNumTracks);
-
-    if (benchmarkPerTrackCount > 0)
-    {
-        benchmarkPerTrackAve = (uint32_t)(benchmarkPerTrackTotal / benchmarkPerTrackCount);
-        printf("Cycles, per target {mean, min, max} = %u, %u, %u\n", benchmarkPerTrackAve, benchmarkPerTrackMin, benchmarkPerTrackMax);
-        printf("uSec, per target {mean, min, max} = %u, %u, %u\n", (uint32_t)(benchmarkPerTrackAve * uSecondsPerCycle), (uint32_t)(benchmarkPerTrackMin * uSecondsPerCycle), (uint32_t)(benchmarkPerTrackMax * uSecondsPerCycle));
-    }
-    else
-    {
-        printf("ERROR: No benchmark results produced\n");
-    }
 
     /* Test Results */
     /* Performance Test */

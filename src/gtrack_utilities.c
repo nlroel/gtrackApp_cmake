@@ -314,7 +314,7 @@ void gtrack_computeJacobian(GTRACK_STATE_VECTOR_TYPE format, float *cart, float 
             jac[ssize + 2] = 0; /* dz */
 
             /* dElev */
-            jac[2 * ssize + 0] = -posz * posz / (range2 * rangeXY); /* dx */
+            jac[2 * ssize + 0] = -posx * posz / (range2 * rangeXY); /* dx */
             jac[2 * ssize + 1] = -posy * posz / (range2 * rangeXY); /* dy */
             jac[2 * ssize + 2] = rangeXY / range2; /* dz */
 
