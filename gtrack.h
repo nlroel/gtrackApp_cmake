@@ -129,7 +129,7 @@ extern "C"
 {
 #endif
 
-#define GTRACK_3D
+#define GTRACK_2D
 
 #if !defined(GTRACK_2D) && !defined(GTRACK_3D)
 #define GTRACK_2D

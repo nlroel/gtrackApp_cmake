@@ -19,5 +19,5 @@ file(GLOB_RECURSE SOURCES "src/*.c")
 
 add_library(gtrack ${SOURCES})
 
-add_executable(gtrackApp ${SOURCES} gtrackApp.c gtrackAlloc.c)
+add_executable(gtrackApp ${SOURCES} gtrackApp.c gtrackAlloc.c gtrackLog.c)
 target_link_libraries(gtrackApp PUBLIC gtrack)
